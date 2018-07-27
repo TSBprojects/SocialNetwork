@@ -1,0 +1,36 @@
+﻿@model SocialNetwork.WEB.Models.LoginModel
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="header-user">
+        <div id="header-user-control">
+            <span id="header-user-name">@ViewBag.UserName</span><img id="header-user-img" src="~/Content/dbImages/default_1.jpg" /><i id="header-user-arrow" class="fa fa-caret-down"></i>
+        </div>
+        <div id="header-user-div" class="hidden">
+            <div class="relative">
+                <div id="header-user-div-triangle" class="triangle"></div>
+                <a class="header-user-li" href="~/Home/Index">Моя страница</a>
+                <hr class="header-user-hr" />
+                <a class="header-user-li" href="~/Home/Index">Редактировать</a>
+                <a class="header-user-li" href="~/Home/Index">Настройки</a>
+                <a class="header-user-li" href="~/Home/Index">Помощ</a>
+                <hr class="header-user-hr" />
+                @Html.ActionLink("Выход", "Logout", "Account", null, new { @class = "header-user-li" })
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div id="header-enter">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.EditorFor(model => model.Login, new { htmlAttributes = new { placeholder = "Логин", @class= "header-enter-input" } })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Пароль", @class = "header-enter-input" } })<button class="header-enter-button button" type="submit">Войти</button>@Html.ActionLink("Регистрация", "Registration", "Account", null, new { @class= "header-enter-button button" })
+        }
+    </div>
+}
+

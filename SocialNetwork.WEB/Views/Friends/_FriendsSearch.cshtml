@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<div id="friends-search">
+    <div class="relative">
+        <i id="friends-search-icon" class="fa fa-search"></i>
+        <input id="friends-search-input" type="text" placeholder="Начните вводить имя" />
+        <a id="friends-search-contrl">
+            <span id="friends-search-contrl-title">Параметры</span>
+            <i id="friends-search-contrl-caret-down" class="fa fa-caret-down"></i>
+        </a>
+        <div id="friends-search-filter" class="hidden">
+            <div class="relative">
+                <div id="friends-search-filter-triangle" class="triangle"></div>
+                <div class="friends-search-filter-div">
+                    <p class="friends-search-filter-title">Город</p>
+                    <select id="friends-search-filter-city-select" class="friends-search-filter-select option-title" name="city">
+                        <option id="option-title-city-opt" value="any">Выбор города</option>
+                        <option class="option-city-opt" value="">Город 1</option>
+                        <option class="option-city-opt" value="">Город 2</option>
+                        <option class="option-city-opt" value="">Город 3</option>
+                    </select>
+                </div>
+                <div class="friends-search-filter-div">
+                    <p class="friends-search-filter-title">Возраст</p>
+                    <select id="friends-search-filter-age-from" class="friends-search-filter-select option-title" name="city">
+                        <option id="option-title-age-from-opt" value="any">От</option>
+                        <option class="option-age-from-opt" value="1">От 1</option>
+                        <option class="option-age-from-opt" value="2">От 2</option>
+                        <option class="option-age-from-opt" value="3">От 3</option>
+                    </select><div id="friends-search-filter-age-sep">–</div><select id="friends-search-filter-age-to" class="friends-search-filter-select option-title" name="city">
+                        <option id="option-title-age-to-opt" value="any">До</option>
+                        <option class="option-age-to-opt" value="10">До 10</option>
+                        <option class="option-age-to-opt" value="20">До 20</option>
+                        <option class="option-age-to-opt" value="30">До 30</option>
+                    </select>
+                </div>
+                <div class="friends-search-filter-div">
+                    <p class="friends-search-filter-title">Пол</p>
+                    <p class="friends-search-filter-sex-p">
+                        <input class="friends-search-filter-sex-radio" name="sex" value="male" type="radio" />
+                        <span class="friends-search-filter-sex-span">Мужской</span>
+                    </p>
+                    <p class="friends-search-filter-sex-p">
+                        <input class="friends-search-filter-sex-radio" name="sex" value="female" type="radio" />
+                        <span class="friends-search-filter-sex-span">Женский</span>
+                    </p>
+                    <p class="friends-search-filter-sex-p">
+                        <input class="friends-search-filter-sex-radio" name="sex" value="any" type="radio" checked />
+                        <span class="friends-search-filter-sex-span">Любой</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

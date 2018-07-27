@@ -1,0 +1,101 @@
+﻿@using System.Text.RegularExpressions;
+@using SocialNetwork.BLL.DataTransferObjects
+@model IEnumerable<DialogDTO>
+@{
+    Layout = null;
+}
+
+@foreach (DialogDTO d in Model)
+{
+    if (!ViewBag.messService.IsReadByUser(d.LastMessInDialog.Id, ViewBag.userId).Data)
+    {
+        <li class="dialogs button unread" dialogId="@d.Id">
+            @if (ViewBag.messService.GetCompanion(d.Id, ViewBag.userId).Data.Online)
+            {
+                if (ViewBag.messService.GetUsersInDialog(d.Id).Data.Count == 2)
+                {<div class="dialogs-img-link online" userId="@ViewBag.messService.GetCompanion(d.Id, ViewBag.userId).Data.Id">
+                        <img class="dialogs-img" src="@d.ProfileImage.FilePath" />
+                    </div>}
+                else
+                {<div class="dialogs-img-link online">
+                        <img class="dialogs-img" src="@d.ProfileImage.FilePath" />
+                    </div>}
+            }
+            else
+            {<div class="dialogs-img-link">
+                    <img class="dialogs-img" src="@d.ProfileImage.FilePath" />
+                </div>}<div class="dialogs-info">
+                <div class="dialogs-name">@d.Name</div>
+                <i class="dialogs-close fa fa-close"></i>
+                <div class="dialogs-last-date">@d.LastMessInDialog.Date.ToString("HH:mm")</div>
+                @if (d.LastMessInDialog.FromUserId == ViewBag.userId && !d.LastMessInDialog.Status)
+                {<div class="dialogs-last-message unread">
+                       <span class="dialogs-last-message-mes">@Html.Raw(d.LastMessInDialog.Text.Replace("<br>", " "))</span>
+                    </div>}
+                else
+                {<div class="dialogs-last-message">
+                       <span class="dialogs-last-message-mes">@Html.Raw(d.LastMessInDialog.Text.Replace("<br>", " "))</span>
+                    </div>}
+                <div class="dialogs-unread-count">@ViewBag.messService.DialogNewMessCount(d.Id, ViewBag.userId).Data</div>
+            </div>
+        </li>
+    }
+    else
+    {
+        <li class="dialogs button" dialogId="@d.Id">
+            @if (ViewBag.messService.GetCompanion(d.Id, ViewBag.userId).Data.Online)
+            {
+                if (ViewBag.messService.GetUsersInDialog(d.Id).Data.Count == 2)
+                {<div class="dialogs-img-link online" userId="@ViewBag.messService.GetCompanion(d.Id, ViewBag.userId).Data.Id">
+                    <img class="dialogs-img" src="@d.ProfileImage.FilePath" />
+                 </div>}
+                else
+                {<div class="dialogs-img-link online">
+                    <img class="dialogs-img" src="@d.ProfileImage.FilePath" />
+                </div>}
+            }
+            else
+            {<div class="dialogs-img-link">
+                    <img class="dialogs-img" src="@d.ProfileImage.FilePath" />
+                </div>}<div class="dialogs-info">
+                <div class="dialogs-name">@d.Name</div>
+                <i class="dialogs-close fa fa-close"></i>
+                <div class="dialogs-last-date">@d.LastMessInDialog.Date.ToString("HH:mm")</div>
+                @if (!d.LastMessInDialog.Status)
+                {
+                    if (d.LastMessInDialog.FromUserId == ViewBag.userId)
+                    {
+                        <div class="dialogs-last-message unread">
+                            <img class="dialogs-last-message-img" src="@d.LastMessInDialog.FromUser.ProfileImage.FilePath" /><span class="dialogs-last-message-mes">@Html.Raw(d.LastMessInDialog.Text.Replace("<br>", " "))</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="dialogs-last-message unread">
+                           <span class="dialogs-last-message-mes">@Html.Raw(d.LastMessInDialog.Text.Replace("<br>", " "))</span>
+                        </div>
+                    }
+                }
+                else
+                {
+                    if (d.LastMessInDialog.FromUserId == ViewBag.userId)
+                    {
+                        <div class="dialogs-last-message">
+                            <img class="dialogs-last-message-img" src="@d.LastMessInDialog.FromUser.ProfileImage.FilePath" /><span class="dialogs-last-message-mes">@Html.Raw(d.LastMessInDialog.Text.Replace("<br>", " "))</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="dialogs-last-message">
+                            <span class="dialogs-last-message-mes">@Html.Raw(d.LastMessInDialog.Text.Replace("<br>", " "))</span>
+                        </div>
+                    }
+                }
+                <div class="dialogs-unread-count" style="display:none">0</div>
+                @*<div class="dialogs-last-message unread">
+                    <span class="dialogs-last-message-mes-min">Последнее сообщениеПоследнее сообщениеПоследнее сообщение</span>
+                </div>*@
+            </div>
+        </li>
+    }
+}

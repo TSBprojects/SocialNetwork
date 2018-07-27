@@ -1,0 +1,88 @@
+﻿@using SocialNetwork.BLL.DataTransferObjects
+@model IEnumerable<UserDTO>
+@{
+    Layout = null;
+}
+
+@if (ViewBag.isList)
+{
+    foreach (UserDTO u in Model)
+    {
+        <div class="friend" userId="@u.Id">
+            @if (u.Online)
+            {
+                <a href="~/id=@u.Id" class="friend-img-link online">
+                    <img class="friends-img" src="@u.ProfileImage.FilePath" />
+                </a>
+            }
+            else
+            {
+                <a href="~/id=@u.Id" class="friend-img-link">
+                    <img class="friends-img" src="@u.ProfileImage.FilePath" />
+                </a>
+            }
+            <div class="friends-user-info">
+                <a href="~/id=@u.Id" class="friends-user-name">@u.FirstName @u.LastName</a>
+                <a class="friends-user-dialog"  dialogId="@u.TempDialogId">Написать сообщение</a>
+            </div>
+            <i class="friends-user-contrl fa fa-cog"></i>
+            <div class="friends-user-contrl-div hidden">
+                <div class="relative">
+                    <div id="friends-user-contrl-triangle" class="triangle"></div>
+                    <ul class="friends-user-contrl-ul">
+                        <li class="friends-user-contrl-delete friends-user-contrl-li">Убрать из друзей</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div id="friends-nav">
+        <a id="friends-tab-all" class="friends-tab link-button">
+            <span class="friends-tab-title">Все друзья</span>
+            <span class="friends-count">@ViewBag.FriendsCount</span>
+        </a><a id="friends-tab-online" class="friends-tab link-button">
+            <span class="friends-tab-title">Друзья онлайн</span>
+            <span class="friends-count">@ViewBag.OnlineFriendsCount</span>
+        </a>
+        <div id="friends-tab-line"></div>
+        <a id="find-friends-button" class="link-button">
+            <span id="friends-find-button-title">Найти друзей</span>
+        </a>
+    </div>
+    @Html.Partial("_FriendsSearch")
+    <div id="friends-list">
+        @foreach (UserDTO u in Model)
+        {
+            <div class="friend" userId="@u.Id">
+                @if (u.Online)
+                {
+                    <a href="~/id=@u.Id" class="friend-img-link online">
+                        <img class="friends-img" src="@u.ProfileImage.FilePath" />
+                    </a>
+                }
+                else
+                {
+                    <a href="~/id=@u.Id" class="friend-img-link">
+                        <img class="friends-img" src="@u.ProfileImage.FilePath" />
+                    </a>
+                }
+                <div class="friends-user-info">
+                    <a href="~/id=@u.Id" class="friends-user-name">@u.FirstName @u.LastName</a>
+                    <a class="friends-user-dialog"  dialogId="@u.TempDialogId">Написать сообщение</a>
+                </div>
+                <i class="friends-user-contrl fa fa-cog"></i>
+                <div class="friends-user-contrl-div hidden">
+                    <div class="relative">
+                        <div id="friends-user-contrl-triangle" class="triangle"></div>
+                        <ul class="friends-user-contrl-ul">
+                            <li class="friends-user-contrl-delete friends-user-contrl-li">Убрать из друзей</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

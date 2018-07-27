@@ -1,0 +1,34 @@
+﻿@model SocialNetwork.WEB.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="logreg">
+    <h2 class="logreg-title">Вход</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <hr class="logreg-hr" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="logreg-box">
+            @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "logreg-label" })
+            @Html.EditorFor(model => model.Login, new { htmlAttributes = new { placeholder = "Логин", @class = "logreg-input" } })
+        </div>
+        <div class="logreg-box">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "logreg-label" })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Пароль", @class = "logreg-input" } })
+        </div>
+        <button class="logreg-button button" type="submit">Войти</button>@Html.ActionLink("Регистрация", "Registration", "Account", null, new { @class = "logreg-button button" })
+    }
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/LogReg")
+}
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/LogReg")
+}

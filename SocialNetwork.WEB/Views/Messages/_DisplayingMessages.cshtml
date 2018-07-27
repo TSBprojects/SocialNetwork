@@ -1,0 +1,137 @@
+﻿@using System.Globalization;
+@using SocialNetwork.BLL.DataTransferObjects
+@model IEnumerable<DialogMessageDTO>
+@{
+    Layout = null;
+    DateTime date = DateTime.Now;
+}
+@if (Model.Count() != 0 && Model.Count() < 80)
+{
+    if (date.Year == Model.ElementAt(0).Date.Year && date.Month == Model.ElementAt(0).Date.Month && date.Day == Model.ElementAt(0).Date.Day)
+    {
+        date = Model.ElementAt(0).Date;
+        <div class="dialog-date-sep">Сегодня</div>
+    }
+    else if ((date.Year == Model.ElementAt(0).Date.Year && date.Month == Model.ElementAt(0).Date.Month && !(date.Day == Model.ElementAt(0).Date.Day)) || Model.ElementAt(0).Date.Year == date.Year && !(Model.ElementAt(0).Date.Month == date.Month))
+    {
+        date = Model.ElementAt(0).Date;
+        if (date.Day == DateTime.Now.Day - 1 && date.Month == DateTime.Now.Month && date.Year == DateTime.Now.Year)
+        {
+            <div class="dialog-date-sep">Вчера</div>
+        }
+        else
+        {
+            <div class="dialog-date-sep">@date.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("ru-RU"))</div>
+        }
+
+    }
+    else if (date.Year != Model.ElementAt(0).Date.Year)
+    {
+        date = Model.ElementAt(0).Date;
+        <div class="dialog-date-sep">@date.Date.ToString("d MMMM yyyy", CultureInfo.CreateSpecificCulture("ru-RU"))</div>
+    }
+    if (Model.ElementAt(0).FromUserId == ViewBag.userId && !Model.ElementAt(0).Status)
+    {
+        <div class="dialog-message unread" messId="@Model.ElementAt(0).Id">
+            <div class="dialog-img-link">
+                <img class="dialog-img" src="@Model.ElementAt(0).FromUser.ProfileImage.FilePath" />
+            </div><div class="dialog-info dialog-nav" sec="@TimeSpan.FromTicks(Model.ElementAt(0).Date.Ticks).TotalSeconds" userId="@Model.ElementAt(0).FromUserId">
+                <div class="dialog-name">@Model.ElementAt(0).FromUser.FirstName @Model.ElementAt(0).FromUser.LastName</div>
+                <div class="dialog-last-date">@Model.ElementAt(0).Date.ToString("HH:mm")</div>
+                <div class="dialog-text">@Html.Raw(Model.ElementAt(0).Text)</div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="dialog-message" messId="@Model.ElementAt(0).Id">
+            <div class="dialog-img-link">
+                <img class="dialog-img" src="@Model.ElementAt(0).FromUser.ProfileImage.FilePath" />
+            </div><div class="dialog-info dialog-nav" sec="@TimeSpan.FromTicks(Model.ElementAt(0).Date.Ticks).TotalSeconds" userId="@Model.ElementAt(0).FromUserId">
+                <div class="dialog-name">@Model.ElementAt(0).FromUser.FirstName @Model.ElementAt(0).FromUser.LastName</div>
+                <div class="dialog-last-date">@Model.ElementAt(0).Date.ToString("HH:mm")</div>
+                <div class="dialog-text">@Html.Raw(Model.ElementAt(0).Text)</div>
+            </div>
+        </div>
+    }
+}
+@for (int i = 1; i < Model.Count(); i++)
+{
+    DialogMessageDTO preDM = Model.ElementAt(i - 1), curDM = Model.ElementAt(i);
+    if (preDM.FromUserId == curDM.FromUserId && @TimeSpan.FromTicks(curDM.Date.Ticks).TotalSeconds - @TimeSpan.FromTicks(preDM.Date.Ticks).TotalSeconds <= 5 &&
+        ((curDM.Date.Year == date.Year && curDM.Date.Month == date.Month && curDM.Date.Day == date.Day) ||
+        DateTime.Now.Year == date.Year && DateTime.Now.Month == date.Month && DateTime.Now.Day == date.Day))
+    {
+        double r;
+        if (curDM.FromUserId == ViewBag.userId && !curDM.Status)
+        {
+            r = @TimeSpan.FromTicks(curDM.Date.Ticks).TotalSeconds - @TimeSpan.FromTicks(preDM.Date.Ticks).TotalSeconds;
+            <div class="dialog-message-min unread dialog-nav" sec="@TimeSpan.FromTicks(curDM.Date.Ticks).TotalSeconds" messId="@curDM.Id" userId="@curDM.FromUserId">
+                <div class="dialog-info-min">
+                    <div class="dialog-text">@Html.Raw(curDM.Text)</div>
+                </div>
+            </div>
+        }
+        else
+        {
+            r = @TimeSpan.FromTicks(curDM.Date.Ticks).TotalSeconds - @TimeSpan.FromTicks(preDM.Date.Ticks).TotalSeconds;
+            <div class="dialog-message-min dialog-nav" sec="@TimeSpan.FromTicks(curDM.Date.Ticks).TotalSeconds" messId="@curDM.Id" userId="@curDM.FromUserId">
+                <div class="dialog-info-min">
+                    <div class="dialog-text">@Html.Raw(curDM.Text)</div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        if (!(curDM.Date.Year == date.Year && curDM.Date.Month == date.Month && curDM.Date.Day == date.Day))
+        {
+            if (DateTime.Now.Year == curDM.Date.Year && DateTime.Now.Month == curDM.Date.Month && DateTime.Now.Day == curDM.Date.Day)
+            {
+                date = curDM.Date;
+                <div class="dialog-date-sep">Сегодня</div>
+            }
+            else if ((curDM.Date.Year == date.Year && curDM.Date.Month == date.Month && !(curDM.Date.Day == date.Day)) || curDM.Date.Year == date.Year && !(curDM.Date.Month == date.Month))
+            {
+                date = curDM.Date;
+                if (date.Day == DateTime.Now.Day - 1 && date.Month == DateTime.Now.Month && date.Year == DateTime.Now.Year)
+                {
+                    <div class="dialog-date-sep">Вчера</div>
+                }
+                else
+                {
+                    <div class="dialog-date-sep">@date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("ru-RU"))</div>
+                }
+            }
+            else if (curDM.Date.Year != date.Year)
+            {
+                date = curDM.Date;
+                <div class="dialog-date-sep">@date.ToString("d MMMM yyyy", CultureInfo.CreateSpecificCulture("ru-RU"))</div>
+            }
+        }
+        if (curDM.FromUserId == ViewBag.userId && !curDM.Status)
+        {
+            <div class="dialog-message unread" messId="@curDM.Id">
+                <div class="dialog-img-link">
+                    <img class="dialog-img" src="@curDM.FromUser.ProfileImage.FilePath" />
+                </div><div class="dialog-info dialog-nav" sec="@TimeSpan.FromTicks(curDM.Date.Ticks).TotalSeconds" userId="@curDM.FromUserId">
+                    <div class="dialog-name">@curDM.FromUser.FirstName @curDM.FromUser.LastName</div>
+                    <div class="dialog-last-date">@curDM.Date.ToString("HH:mm")</div>
+                    <div class="dialog-text">@Html.Raw(curDM.Text)</div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="dialog-message" messId="@curDM.Id">
+                <div class="dialog-img-link">
+                    <img class="dialog-img" src="@curDM.FromUser.ProfileImage.FilePath" />
+                </div><div class="dialog-info dialog-nav" sec="@TimeSpan.FromTicks(curDM.Date.Ticks).TotalSeconds" userId="@curDM.FromUserId">
+                    <div class="dialog-name">@curDM.FromUser.FirstName @curDM.FromUser.LastName</div>
+                    <div class="dialog-last-date">@curDM.Date.ToString("HH:mm")</div>
+                    <div class="dialog-text">@Html.Raw(curDM.Text)</div>
+                </div>
+            </div>
+        }
+    }
+}

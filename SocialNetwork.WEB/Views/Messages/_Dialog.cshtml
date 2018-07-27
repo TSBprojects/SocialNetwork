@@ -1,0 +1,91 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="margin-top-20px"></div>
+<div id="dialogs-container" style="display:none"></div>
+<div id="dialog-container">
+    <div id="dialog-header">
+        <div id="dialog-header-std">
+            <div id="dialog-header-back">
+                <i class="fa fa-caret-left"></i>
+                <span id="dialog-header-back-text">Назад</span>
+            </div><div id="dialog-header-name">
+                <a href="~/" id="dialog-header-name-text">@ViewBag.DialogName</a>
+                <a id="dialog-header-name-count"></a>
+            </div><div id="dialog-header-controls">
+                <a id="dialog-header-controls-link" href="~/">
+                    <img id="dialog-header-controls-img" src="@ViewBag.DialogProfileImage" />
+                </a>
+                <i id="dialog-header-controls-contrl" class="fa fa-cog"></i>
+                <div id="dialog-header-controls-contrl-div" class="hidden">
+                    <div class="relative">
+                        <div id="dialog-controls-contrl-triangle" class="triangle"></div>
+                        <ul id="dialog-controls-contrl-ul">
+                            <li id="dialog-controls-contrl-add" class="dialog-controls-contrl-li">
+                                <i class="dialog-controls-contrl-li-text-icon fa fa-plus"></i>
+                                <span class="dialog-controls-contrl-li-text">Добавить собеседников</span>
+                            </li>
+                            <li id="dialog-controls-contrl-clean" class="dialog-controls-contrl-li">
+                                <i class="dialog-controls-contrl-li-text-icon fa fa-trash"></i>
+                                <span class="dialog-controls-contrl-li-text">Очистить историю</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <i id="dialog-header-controls-search" class="fa fa-search"></i>
+            </div>
+        </div>
+        <div id="dialog-header-search">
+            <div class="relative">
+                <i id="dialog-search-icon" class="fa fa-search"></i>
+                <input type="text" id="dialog-search-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Поиск по истории сообщений">
+                <a id="dialog-search-contrl">
+                    <span id="dialog-search-contrl-search" class="dialog-search-contrl-title">Найти</span>
+                    <span id="dialog-search-contrl-cancel" class="dialog-search-contrl-title">Отмена</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="dialog-body" dialogId="@ViewBag.DialogId" part="1" partCount="@ViewBag.PartCount">
+        @Html.Action("LoadMessages", new { dialogId = ViewBag.DialogId, part = 1 })
+    </div>
+    <div id="dialog-footer">
+        <div class="relative">
+            <iframe name="frame" style="width:100%;height:100%;position:absolute;z-index:-1"></iframe>
+            <div id="dialog-footer-clip">
+                <i id="dialog-footer-clip-icon" class="fa fa-paperclip"></i>
+
+                <div id="dialog-footer-contrl-div" class="hidden">
+                    <div class="relative">
+                        <div id="dialog-footer-contrl-triangle" class="triangle-d"></div>
+                        <ul id="dialog-footer-contrl-ul">
+                            <li id="dialog-footer-clip-photo" class="dialog-footer-contrl-li">
+                                <i class="dialog-footer-contrl-li-text-icon fa fa-photo"></i>
+                                <span class="dialog-controls-contrl-li-text">Фотография</span>
+                            </li>
+                            <li id="dialog-footer-clip-video" class="dialog-footer-contrl-li">
+                                <i class="dialog-footer-contrl-li-text-icon fa fa-video-camera"></i>
+                                <span class="dialog-controls-contrl-li-text">Видеозапись</span>
+                            </li>
+                            <li id="dialog-footer-clip-audio" class="dialog-footer-contrl-li">
+                                <i class="dialog-footer-contrl-li-text-icon fa fa-music"></i>
+                                <span class="dialog-controls-contrl-li-text">Аудиозапись</span>
+                            </li>
+                            <li id="dialog-footer-clip-doc" class="dialog-footer-contrl-li">
+                                <i class="dialog-footer-contrl-li-text-icon fa fa-file"></i>
+                                <span class="dialog-controls-contrl-li-text">Документ</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><div id="dialog-footer-input">
+                <div id="dialog-footer-input-area" contenteditable="true"></div>
+            </div><div id="dialog-footer-send">
+                <i id="dialog-footer-send-icon" class="fa fa-paper-plane not-active"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="margin-bottom-20px"></div>

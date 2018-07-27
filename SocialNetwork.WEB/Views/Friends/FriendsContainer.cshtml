@@ -1,0 +1,27 @@
+﻿@model string
+@{
+    ViewBag.Title = "Friends";
+}
+
+
+<div id="content"> 
+    @Html.Action("Handler", new { section = Model, isList = ViewBag.isList })
+</div><div id="filter">
+    <div class="relative">
+        <a id="friends-filter-myfriends" class="friends-filter-link">Мои друзья</a>
+        <a id="friends-filter-friendsrequests" class="friends-filter-link">Заявки в друзья</a>
+        <a id="friends-filter-findfriends" class="friends-filter-link">Поиск друзей</a>
+        <div id="friends-filter-line"></div>
+    </div>
+</div>
+
+
+@section Styles {
+    @Styles.Render("~/Content/Friends")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/Friends")    
+}
+
+

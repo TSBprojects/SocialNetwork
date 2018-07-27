@@ -1,0 +1,521 @@
+﻿#dialogs-search {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    height: 40px;
+    position: sticky;
+    top: 50px;
+    z-index: 3;
+}
+#dialogs-search-input {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    padding-left: 54px;
+    padding-right: 54px;
+    font-size: 100%;
+}
+#dialogs-search-icon {
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    font-size: 26px;
+    color: #93A3BC;
+}
+.dialogs {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    background: white;
+    position: relative;
+    width: 100%;
+    height: 100px;
+    display: block;
+}
+.dialogs:hover {
+    background: #F5F7FA;
+    cursor: pointer;
+}
+.dialogs:hover .dialogs-close {
+    opacity: .6;
+}
+.dialogs-img-link {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin: 10px 0 0 15px;
+}
+.dialogs-img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+.dialogs-info {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 15px;
+    height: 100%;
+    width: 490px;
+}
+.dialogs-name {
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #222222;
+}
+.dialogs-last-date {
+    margin-top: 10px;
+    display: inline-block;
+    float: right;
+    color: #A0A5AF;
+}
+.dialogs-close {
+    margin: 10px 15px;
+    opacity: 0;
+    float: right;
+    font-size: 20px;
+    color: #B6C4D4;
+}
+.dialogs-close:hover {
+    opacity: 1 !important;
+    cursor: default;
+}
+.dialogs-last-message {
+    margin-top: 13px;
+    width: calc(100% - 45px);
+    height: 42px;
+    padding: 5px;
+    box-sizing: border-box;
+    color: #656565;
+}
+.unread {
+    background: #E9EDF2;
+}
+.dialogs-last-message-img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+.dialogs-last-message-mes {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    vertical-align: top;
+    padding: 4px 5px;
+    width: 365px;
+    height: 25px;
+}
+.dialogs-last-message-mes-min {
+    background: #aaa;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    padding: 4px 5px;
+    width: 455px;
+    height: 25px;
+}
+.dialogs-unread-count {
+    position: absolute;
+    right: 45px;
+    bottom: 19px;
+    background: #7293B6;
+    color: white;
+    border-radius: 25px;
+    padding: 0px 8.5px;
+}
+.dialogs-filter-link {
+    display: block;
+    width: 200px;
+    padding: 5px 15px;
+    box-sizing: border-box;
+}
+.dialogs-filter-link:hover {
+    background: #F0F2F5;
+    border-left: 3px solid rgba(98,133,175, .5);
+    padding-left: 12px;
+}
+#dialogs-filter-line {
+    background: #6285AF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35px;
+    width: 3px;
+}
+
+
+#dialog-header {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    position: sticky;
+    top: 70px;
+    height: 40px;
+    z-index: 2;
+    background: white;
+}
+#dialog-header-back {
+    display: inline-block;
+    height: 40px;
+    width: 30%;
+    vertical-align: top;
+    padding: 7px 0 0 15px;
+    box-sizing: border-box;
+    color: #A8ADB8;
+}
+#dialog-header-back:hover {
+    background: linear-gradient(to left, #fff 0%, #F0F2F5 50%);
+    cursor: pointer;
+}
+#dialog-header-name {
+    display: inline-block;
+    height: 40px;
+    width: 40%;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 7px;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+#dialog-header-name-text {
+    color: #222222;
+}
+#dialog-header-name-max {
+    display: inline-block;
+    height: 40px;
+    width: 40%;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 8px;
+    box-sizing: border-box;
+}
+#dialog-header-controls {
+    display: inline-block;
+    height: 40px;
+    width: 30%;
+}
+#dialog-header-controls-search, #dialog-header-controls-contrl {
+    float: right;
+    opacity: .75;
+}
+#dialog-header-controls-search:hover, #dialog-header-controls-contrl:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+#dialog-header-controls-search {
+    font-size: 23px;
+    margin: 7px 15px 0 0;
+    color: #828A99;
+}
+#dialog-header-controls-contrl {
+    font-size: 25px;
+    margin: 7px 15px 0 0;
+    color: #828A99;
+}
+#dialog-header-controls-img {
+    height: 32px;
+    width: 32px;
+    float: right;
+    margin: 4px 15px 0 0;
+    border-radius: 50%;
+}
+#dialog-header-controls-img:hover {
+    cursor: pointer;
+}
+#dialog-header-controls-contrl-div {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    position: absolute;
+    top: 45px;
+    right: 52px;
+    padding: 5px 0;
+    background: white;
+}
+#dialog-controls-contrl-triangle {
+    top: -12px;
+    right: 14px;
+}
+#dialog-controls-contrl-ul {
+    height: 100%;
+    width: 100%;
+}
+.dialog-controls-contrl-li {
+    padding: 5px 15px;
+    color: #2A5885;
+}
+.dialog-controls-contrl-li:hover {
+    background: #E4EAF0;
+    cursor: pointer;
+}
+.dialog-controls-contrl-li-text-icon {
+    margin-right: 6px;
+    opacity: .75;
+}
+#dialog-header-search {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+#dialog-search-input {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    padding-left: 54px;
+    padding-right: 143px;
+    font-size: 100%;
+}
+#dialog-search-icon {
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    font-size: 26px;
+    opacity: .6;
+}
+#dialog-search-contrl {
+    position: absolute;
+    right: 15px;
+    top: 7px;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 30px;
+}
+#dialog-search-contrl:hover {
+    cursor: pointer;
+    
+}
+.dialog-search-contrl-title {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    padding: 2px 8px;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+#dialog-search-contrl-search {
+    color: white;
+    background: #5E81A8;
+}
+#dialog-search-contrl-cancel {
+    background: #E5EBF1;
+}
+#dialog-search-contrl-search:hover {
+    background: #6888AD;
+}
+#dialog-search-contrl-cancel:hover {
+    background: #DFE6ED;
+}
+#dialog-body {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    min-height: calc(100vh - 180px);
+    background: white;
+}
+
+#dialog-footer {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    position: sticky;
+    bottom: 20px;
+    min-height: 50px;
+    z-index: 2;
+    background: #FAFBFC;
+}
+#dialog-footer-clip, #dialog-footer-send {
+    display: inline-block;
+    height: 100%;
+    width: 10%;
+}
+#dialog-footer-clip {
+    vertical-align: top;
+} 
+dialog-footer-send {
+
+}
+#dialog-footer-clip-icon:hover, .active:hover {
+    opacity: 1;
+}
+#dialog-footer-clip-icon {
+    font-size: 28px;
+    margin: 11px 0 0px 15px;
+    opacity: .6;
+}
+#dialog-footer-send-icon {
+    font-size: 25px;
+    float: right;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+.active
+{
+    opacity: .6;
+    cursor:pointer;
+}
+.not-active {
+    opacity: .2;
+    cursor:default;
+}
+.not-active {
+    font-size: 25px;
+    float: right;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    opacity: .2;
+}
+#dialog-footer-input {
+    display: inline-block;
+    height: 100%;
+    width: 80%;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: bottom;
+}
+#dialog-footer-input-area {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    resize: none;
+    font-size: 100%;
+    min-height: 29px;
+    max-height: 254px;
+    width: 480px;
+    padding: 2px 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-y: auto;
+    background: white;
+}
+
+
+#dialog-footer-contrl-div {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    position: absolute;
+    top: -155px;
+    left: 5px;
+    padding: 5px 0;
+    background: white;
+}
+#dialog-footer-contrl-triangle {
+    bottom: -12px;
+    left: 14px;
+}
+#dialog-footer-contrl-ul {
+    height: 100%;
+    width: 100%;
+}
+.dialog-footer-contrl-li {
+    padding: 5px 15px;
+}
+.dialog-footer-contrl-li:hover {
+    background: #E4EAF0;
+    cursor: pointer;
+}
+.dialog-footer-contrl-li-text-icon {
+    margin-right: 6px;
+    opacity: .75;
+}
+
+.dialog-message {
+    width: calc(100%-70px);
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    margin: 5px 35px 0px 35px;
+    box-sizing: border-box;
+}
+.dialog-message-min {
+    width: calc(100%-70px);
+    padding-left: 80px;
+    padding-bottom: 7px;
+    box-sizing: border-box;
+    margin: 0px 35px;
+}
+.dialog-img-link {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.dialog-img {
+    -webkit-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    -moz-box-shadow: 0px 0px 0px 1px #E3E4E8;
+    box-shadow: 0px 0px 0px 1px #E3E4E8;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+.dialog-info {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 15px;
+    height: 100%;
+    width: calc(100% - 65px);
+    box-sizing: border-box;
+}
+.dialog-info-min {
+    width: 100%;
+}
+.dialog-name {
+    display: inline-block;
+    font-weight: bold;
+    color: #42648B;
+}
+.dialog-last-date {
+    margin: 0 0 0 10px;
+    display: inline-block;
+    color: #AEB2BA;
+}
+.dialog-text {
+    word-wrap: break-word;
+}
+.dialog-date-sep {
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+
+#show-bymessage-only-button {
+    position: sticky;
+    top: 90px;
+    text-align: center;
+    background: white;
+    color: #2A5885;
+    height: 40px;
+    box-sizing: border-box;
+    padding-top: 8px;
+}
+#show-bymessage-only-button:hover {
+    background: #F5F7FA;
+    cursor: pointer;
+}
+#show-bymessage-only {
+    background: white;
+    height: 40px;
+    box-sizing: border-box;
+    padding-top: 8px;
+    padding-left: 15px;
+    color: #939393;
+}
+#dialogs-empty {
+    text-align: center;
+    background: white;
+    height: 40px;
+    box-sizing: border-box;
+    padding-top: 8px;
+    color: #939393;
+}

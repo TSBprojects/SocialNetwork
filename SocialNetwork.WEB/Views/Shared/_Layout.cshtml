@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <iframe name="bodyFrame" style="width:100%;position:absolute;z-index:-1"></iframe>
+    <header>
+        <div id="header">
+            <a id="header-title" href="~/">
+                <i id="header-title-vk" class="fa fa-vk"></i>
+            </a>
+            @Html.Action("HeaderLogin", "Account")
+        </div>
+    </header>
+
+    <div id="body">
+        @Html.Action("Menu","Account")<div id="container" class="hidden-m">
+            @RenderBody()
+        </div>@*<div id="afterLoad">
+            <div class="relative">
+                <img id="afterLoad-spinner" src="~/Content/CSSpic/spinner.svg" />
+            </div>
+        </div>*@
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/SignalR")
+    <script src="~/signalr/hubs"></script>
+    @Scripts.Render("~/bundles/Global")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

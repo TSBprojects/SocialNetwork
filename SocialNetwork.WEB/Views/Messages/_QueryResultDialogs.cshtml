@@ -1,0 +1,73 @@
+﻿@using SocialNetwork.BLL.Infrastructure
+@using SocialNetwork.BLL.DataTransferObjects
+@model SearchResult<DialogDTO>
+@{
+    Layout = null;
+}
+@if (ViewBag.isAjax)
+{
+    if (Model != null)
+    {
+        if (Model.ByMessage != null && Model.ByDialogName != null)
+        {
+            <div id="show-bymessage-only-button">Искать в личных сообщениях</div>
+            <ul id="show-ByDialogName">@Html.Partial("_DisplayingDialogs", Model.ByDialogName)</ul>
+            <div id="show-bymessage-only">Сообщения</div>
+            <ul id="show-ByMessage">@Html.Partial("_DisplayingDialogs", Model.ByMessage)</ul>
+
+        }
+        else if (Model.ByMessage != null)
+        {
+            <div id="show-bymessage-only">Сообщения</div>
+            <ul id="show-ByMessage">@Html.Partial("_DisplayingDialogs", Model.ByMessage)</ul>
+        }
+        else if (Model.ByDialogName != null)
+        {
+            <div id="show-bymessage-only-button">Искать в личных сообщениях</div>
+            <ul id="show-ByDialogName">@Html.Partial("_DisplayingDialogs", Model.ByDialogName)</ul>
+            <div id="dialogs-empty" style="display:none;">Не найдено сообщений по такому запросу.</div>
+        }
+    }
+    else
+    {
+        <div id="dialogs-empty">Не найдено сообщений по такому запросу.</div>
+    }
+}
+else
+{
+    <div class="margin-top-20px"></div>
+    <div id="dialogs-search">
+        <div class="relative">
+            <i id="dialogs-search-icon" class="fa fa-search"></i>
+            <input id="dialogs-search-input" type="text" placeholder="Поиск" value="@ViewBag.query" />
+        </div>
+    </div>
+    <div id="dialogs">
+        @if (Model != null)
+        {
+            if (Model.ByMessage != null && Model.ByDialogName != null)
+            {
+                <div id="show-bymessage-only-button">Искать в личных сообщениях</div>
+                <ul>@Html.Partial("_DisplayingDialogs", Model.ByMessage)</ul>
+                <div id="show-bymessage-only">Сообщения</div>
+                <ul id="show-ByDialogName">@Html.Partial("_DisplayingDialogs", Model.ByDialogName)</ul>
+            }
+            else if (Model.ByMessage != null)
+            {
+                <div id="show-bymessage-only">Сообщения</div>
+                <ul id="show-ByMessage">@Html.Partial("_DisplayingDialogs", Model.ByMessage)</ul>
+            }
+            else if (Model.ByDialogName != null)
+            {
+                <div id="show-bymessage-only-button">Искать в личных сообщениях</div>
+                <ul id="show-ByDialogName">@Html.Partial("_DisplayingDialogs", Model.ByDialogName)</ul>
+                <div id="dialogs-empty" style="display:none;">Не найдено сообщений по такому запросу.</div>
+            }
+        }
+        else
+        {
+            <div id="dialogs-empty">Не найдено сообщений по такому запросу.</div>
+        }
+    </div>
+    <div id="dialog" style="display:none"></div>
+}

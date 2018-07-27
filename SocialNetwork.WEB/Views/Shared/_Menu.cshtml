@@ -1,0 +1,54 @@
+﻿@{ 
+    Layout = null;
+}
+@if (User.Identity.IsAuthenticated)
+{<div id="nav" onselectstart="return false" onmousedown="return false">
+        <a id="nav-my-page" class="nav-link link-button button" href="~/id=@ViewBag.userId">
+            <div class="nav-text">
+                <i class="nav-fa fa fa-home fa-fw"></i>
+                <span>Моя страница</span>
+            </div>
+        </a>
+        <a id="nav-message" class="nav-link link-button button">
+            <div class="nav-text">
+                <i class="nav-fa fa fa-envelope fa-fw"></i>
+                <span>Сообщения</span>
+                <span class="nav-new-count hidden">@ViewBag.NewMessCount</span>
+            </div>
+        </a>
+        <a id="nav-friends" class="nav-link link-button button">
+            <div class="nav-text">
+                <i class="nav-fa fa fa-user fa-fw"></i>
+                <span>Друзья</span>
+                <span class="nav-new-count hidden">@ViewBag.NewFriendsReqCount</span>
+            </div>
+        </a>
+        @*<a id="nav-groups" class="nav-link link-button button" href="#">
+                <div class="nav-text">
+                    <i class="nav-fa fa fa-users fa-fw"></i>
+                    <span>Группы</span>
+                    <span class="nav-new-count hidden">0</span>
+                </div>
+            </a>*@
+        @*<a id="nav-video" class="nav-link link-button button" href="#">
+                <div class="nav-text">
+                    <i class="nav-fa fa fa-video-camera fa-fw"></i>
+                    <span>Видео</span>
+                    <span class="nav-new-count hidden">0</span>
+                </div>
+            </a>*@
+        @*<a id="nav-music" class="nav-link link-button button" href="#">
+                <div class="nav-text">
+                    <i class="nav-fa fa fa-music fa-fw"></i>
+                    <span>Музыка</span>
+                    <span class="nav-new-count hidden">0</span>
+                </div>
+            </a>*@
+        @*<a id="nav-photo" class="nav-link link-button button" href="#">
+                <div class="nav-text">
+                    <i class="nav-fa fa fa-camera fa-fw"></i>
+                    <span>Фотографии</span>
+                    <span class="nav-new-count">999+</span>
+                </div>
+            </a>*@
+    </div>}

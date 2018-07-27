@@ -1,0 +1,17 @@
+﻿@using SocialNetwork.BLL.DataTransferObjects
+@model IEnumerable<DialogDTO>
+@{
+    ViewBag.Title = "Messages";
+}
+
+<div class="margin-top-20px"></div>
+<div id="dialogs-search">
+    <div class="relative">
+        <i id="dialogs-search-icon" class="fa fa-search"></i>
+        <input id="dialogs-search-input" type="text" placeholder="Поиск" />
+    </div>
+</div>
+<div id="dialogs-container">
+    <ul>@Html.Partial("_DisplayingDialogs", Model)</ul>
+</div>
+<div id="dialog-container" style="display:none"></div>

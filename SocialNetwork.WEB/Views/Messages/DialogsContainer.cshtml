@@ -1,0 +1,27 @@
+﻿@model int
+@{
+    ViewBag.Title = "Messages";
+}
+<div id="content" style="margin-top: 0px;">
+    @switch (Model)
+    {
+        case (0):{ @Html.Action("DefaultDialogs", new { isUnread = false }); break;};
+        case (1):{ @Html.Action("CurrentDialog", new { id = ViewBag.data }); break;};
+        case (2):{ @Html.Action("QueryDialogs", new { id = ViewBag.data, IsAjax = false }); break;};
+        case (3):{ @Html.Action("DefaultDialogs", new { isUnread = true }); break;};
+    }
+</div>
+<div id="filter">
+    <div class="relative">
+        <a id="dialogs-filter-all" class="dialogs-filter-link">Все сообщения</a>
+        <a id="dialogs-filter-unread" class="dialogs-filter-link">Непрочитанные</a>
+        <div id="dialogs-filter-line"></div>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/Messages")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/Messages")
+}

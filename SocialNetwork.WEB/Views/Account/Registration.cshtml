@@ -1,0 +1,57 @@
+﻿@model SocialNetwork.WEB.Models.RegistrationModel
+
+@{
+    ViewBag.Title = "Registration";
+}
+
+<div class="logreg">
+    <h2 class="logreg-title">Регистрация</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <hr class="logreg-hr" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="logreg-box">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "logreg-label" })
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { placeholder = "Имя", @class = "logreg-input" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="logreg-box">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "logreg-label" })
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { placeholder = "Фамилия", @class = "logreg-input" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="logreg-box">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "logreg-label" })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Электронная почта", @class = "logreg-input" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="logreg-box">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "logreg-label" })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Пароль", @class = "logreg-input" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="logreg-box">
+            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "logreg-label" })
+            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { placeholder = "Подтвердите пароль", @class = "logreg-input" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+
+        <button class="logreg-button button" type="submit">Зарегистрироваться</button>@Html.ActionLink("Войти", "Login", "Account", null, new { @class = "logreg-button button" })
+    }
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/LogReg")
+}
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/LogReg")
+}

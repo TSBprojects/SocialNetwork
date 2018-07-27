@@ -1,0 +1,41 @@
+﻿@using SocialNetwork.BLL.DataTransferObjects
+@model IEnumerable<UserDTO>
+@{
+    Layout = null;
+}
+
+
+@if (ViewBag.isList)
+{
+    for (int i = 0; i < 20; i++)
+    {
+        <div class="p-friend">
+            <a href="#" class="p-friend-img-link">
+                <img class="p-friends-img" src="~/Content/dbImages/default_1.jpg" />
+            </a><div class="p-friends-user-info">
+                <a href="#" class="p-friends-user-name">Имя Фамилия</a>
+                <a href="#" class="p-friends-user-dialog">Написать сообщение</a>
+                <i class="p-friends-add fa fa-user-plus"></i>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div id="friends-nav">
+        <h2 id="findfriends-title">Поиск друзей</h2>
+    </div>
+    @Html.Partial("_FriendsSearch")
+    <div id="users-list">
+        @for (int i = 0; i < 20; i++)
+        {<div class="p-friend" userId="">
+                <a href="#" class="p-friend-img-link">
+                    <img class="p-friends-img" src="~/Content/dbImages/default_1.jpg" />
+                </a><div class="p-friends-user-info">
+                    <a href="#" class="p-friends-user-name">Имя Фамилия</a>
+                    <a href="#" class="p-friends-user-dialog">Написать сообщение</a>
+                    <i class="p-friends-add fa fa-user-plus"></i>
+                </div>
+            </div>}
+    </div>
+}

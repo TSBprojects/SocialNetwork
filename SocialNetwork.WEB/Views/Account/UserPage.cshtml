@@ -1,0 +1,95 @@
+﻿@using SocialNetwork.BLL.DataTransferObjects
+@model UserDTO
+@{
+    ViewBag.Title = "MainPage";
+}
+
+<div id="content">
+    <div id="user-info">
+        <div id="user-info-head">
+            <h2 id="user-info-head-name">@Model.FirstName @Model.LastName</h2>
+            @if (Model.Online)
+            {
+                <span id="user-info-head-stat">Онлайн</span>
+            }
+        </div>
+        <hr class="user-info-sep" />
+        <div id="user-info-short">
+            @for (int i = 0; i < 5; i++)
+            {<div class="user-info-paragr">
+                <div class="user-info-paragr-name">Свойство:</div><div class="user-info-paragr-text">Значение</div>
+            </div>}
+        </div>
+        <div id="user-info-long-button" onselectstart="return false" onmousedown="return false">Подробная информация</div>
+        <div id="user-info-long">
+            @for (int i = 0; i < 5; i++)
+            {<div class="user-info-sep-text">
+                <span class="user-info-sep-text-name">Раздел</span><hr class="user-info-sep-text-line" />
+            </div>
+            for (int j = 0; j < 5; j++)
+            {<div class="user-info-paragr">
+                <div class="user-info-paragr-name">Свойство:</div><div class="user-info-paragr-text">Значение</div>
+            </div>}}
+        </div>
+    </div>
+    @*<div id="user-photos">
+
+    </div>
+    <div id="user-add-record">
+
+    </div>
+    <div id="user-records">
+
+    </div>*@
+</div><div id="user-main" userId="@Model.Id">
+    <div id="user-main-head">
+        <div id="user-main-head-photo">
+            <img id="user-main-head-photo-img" src="@Model.ProfileImage.FilePath" />
+        </div>
+        @Html.Partial("_UserAction")
+    </div>
+    <div id="user-main-friends">
+        @Html.Action("UserFriends", "Friends", new { id = ViewBag.userId })
+    </div>
+    @*<div id="user-main-media">
+        <div id="user-main-media-group">
+
+        </div>
+        <div id="user-main-media-photoalb">
+            <a href="~/friends/friendslist" id="user-friends-all-title">
+                <span class="user-main-title-name">Фотоальбомы</span>
+                <span class="user-main-title-count">9999</span>
+            </a>
+            <div id="user-main-photoalb-block">
+                @for(int i = 0; i < 3; i++)
+                {
+                    <a href="#" class="user-main-photoalb">
+                        <img class="user-main-photoalb-img" src="~/Content/dbImages/default_1.jpg" />
+                        <div class="user-main-photoalb-info">
+                            <div class="user-main-photoalb-title">
+                                <span class="user-main-photoalb-title-name">Название</span>
+                                <span class="user-main-photoalb-title-count">9999</span>
+                            </div>
+                            <div class="user-main-photoalb-descr">Описание</div>
+                        </div>
+                    </a>
+                }
+            </div>
+
+        </div>
+        <div id="user-main-media-video">
+
+        </div>
+        <div id="user-main-media-music">
+
+        </div>
+    </div>*@
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/User")
+}
+@section Scripts {
+
+    @Scripts.Render("~/bundles/User")
+}

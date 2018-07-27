@@ -1,0 +1,137 @@
+﻿@using SocialNetwork.BLL.DataTransferObjects
+@using System.Linq
+@model IEnumerable<UserDTO>
+@{
+    ViewBag.Title = "MainPage";
+}
+
+<div id="user-friends-all" class="user-friends-block">
+    <a href="~/friends/friendslist" id="user-friends-all-title" class="user-main-title">
+        <span class="user-main-title-name">Друзья</span>
+        <span class="user-main-title-count">@Model.Count()</span>
+    </a>
+    <div id="user-friends-all-friends">
+        @foreach (UserDTO u in Model)
+        {
+            <a href="~/id=@u.Id" class="user-friend-friend">
+                <div class="user-friend-friend-img-block">
+                    <img class="user-friend-friend-img" src="@u.ProfileImage.FilePath" />
+                </div>
+                <div class="user-friend-friend-title">
+                    <span class="user-friend-friend-title-name">@u.FirstName</span>
+                </div>
+            </a>
+        }
+        @*<a href="~/id=@Model.ElementAt(0).Id" class="user-friend-friend">
+            <div class="user-friend-friend-img-block">
+                <img class="user-friend-friend-img" src="~/Content/dbImages/default_1.jpg" />
+            </div>
+            <div class="user-friend-friend-title">
+                <span class="user-friend-friend-title-name">Имя</span>
+            </div>
+        </a><a href="~/id=@Model.ElementAt(1).Id" class="user-friend-friend user-friend-m">
+            <div class="user-friend-friend-img-block">
+                <img class="user-friend-friend-img" src="~/Content/dbImages/default_1.jpg" />
+            </div>
+            <div class="user-friend-friend-title">
+                <span class="user-friend-friend-title-name">Имя</span>
+            </div>
+        </a><a href="~/id=@Model.ElementAt(2).Id" class="user-friend-friend">
+            <div class="user-friend-friend-img-block">
+                <img class="user-friend-friend-img" src="~/Content/dbImages/default_1.jpg" />
+            </div>
+            <div class="user-friend-friend-title">
+                <span class="user-friend-friend-title-name">Имя</span>
+            </div>
+        </a><a href="~/id=@Model.ElementAt(3).Id" class="user-friend-friend">
+            <div class="user-friend-friend-img-block">
+                <img class="user-friend-friend-img" src="~/Content/dbImages/default_1.jpg" />
+            </div>
+            <div class="user-friend-friend-title">
+                <span class="user-friend-friend-title-name">Имя</span>
+            </div>
+        </a><a href="~/id=@Model.ElementAt(4).Id" class="user-friend-friend user-friend-m">
+            <div class="user-friend-friend-img-block">
+                <img class="user-friend-friend-img" src="~/Content/dbImages/default_1.jpg" />
+            </div>
+            <div class="user-friend-friend-title">
+                <span class="user-friend-friend-title-name">Имя</span>
+            </div>
+        </a><a href="~/id=@Model.ElementAt(5).Id" class="user-friend-friend">
+            <div class="user-friend-friend-img-block">
+                <img class="user-friend-friend-img" src="~/Content/dbImages/default_1.jpg" />
+            </div>
+            <div class="user-friend-friend-title">
+                <span class="user-friend-friend-title-name">Имя</span>
+            </div>
+        </a>*@
+
+    </div>
+</div>
+<hr class="user-friends-hr" />
+<div id="user-friends-online">
+    <a href="~/friends/friendslist" id="user-friends-all-title" class="user-main-title">
+        <span class="user-main-title-name">Друзья онлайн</span>
+        <span class="user-main-title-count">@ViewBag.onlineFriendsCount</span>
+    </a>
+    <div id="user-friends-all-friends">
+        @foreach (UserDTO u in Model)
+        {
+            if (u.Online)
+            {<a href="~/id=@u.Id" class="user-friend-friend">
+                <div class="user-friend-friend-img-block">
+                    <img class="user-friend-friend-img" src="@u.ProfileImage.FilePath" />
+                </div>
+                <div class="user-friend-friend-title">
+                    <span class="user-friend-friend-title-name">@u.FirstName @u.LastName</span>
+                </div>
+            </a>}
+        }
+        @*@for (int i = 0; i < 6; i++)
+        {<a href="#" class="user-friend-friend">
+            <div class="user-friend-friend-img-block">
+                <img class="user-friend-friend-img" src="~/Content/dbImages/default_1.jpg" />
+            </div>
+            <div class="user-friend-friend-title">
+                <span class="user-friend-friend-title-name">Имя</span>
+            </div>
+        </a>}*@
+    </div>
+</div>
+
+@* Not my *@
+
+@*<div id="user-friends-common">
+        <a href="~/friends/friendslist" id="user-friends-all-title" class="user-main-title">
+            <span class="user-main-title-name">Общие друзья</span>
+            <span class="user-main-title-count">9999</span>
+        </a>
+        <div id="user-friends-all-friends">
+            @for (int i = 0; i < 6; i++)
+            {<div class="user-friend-friend">
+                <div class="user-friend-friend-img-block">
+                    <img class="user-friend-friend-img" src="~/Content/dbImages/default_1.jpg" />
+                </div>
+                <div class="user-friend-friend-title">
+                    <span class="user-friend-friend-title-name">Имя</span>
+                </div>
+            </div>}
+        </div>
+    </div>
+    <div id="user-friends-all">
+        <a href="~/friends/friendslist" id="user-friends-all-title" class="user-main-title">
+            <span class="user-main-title-name">Друзья</span>
+            <span class="user-main-title-count">9999</span>
+        </a>
+        <div id="user-friends-all-friends">
+            @for (int i = 0; i < 6; i++)
+            {<div class="user-friend-friend">
+                <div class="user-friend-friend-img-block">
+                    <img class="user-friend-friend-img" src="~/Content/dbImages/default_1.jpg" />
+                </div>
+                <div class="user-friend-friend-title">
+                    <span class="user-friend-friend-title-name">Имя</span>
+                </div>
+            </div>}
+        </div>
+    </div>*@
