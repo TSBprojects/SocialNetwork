@@ -36,7 +36,7 @@ namespace SocialNetwork.Controllers
             {
                 UserDTO u = Helper.GetUser(User.Identity.Name);
                 ViewBag.UserName = u.FirstName;
-            }
+            } 
             return PartialView("_HeaderLogin");
         }
 
